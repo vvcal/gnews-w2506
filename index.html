@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile News Feed (Markdown Enabled)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+      /* Basic Reset & Body Styles */
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        background-color: #f0f2f5; /* Light grey background */
+        color: #333;
+        -webkit-font-smoothing: antialiased; /* Better font rendering */
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Container for the feed */
+      .container {
+        max-width: 600px; /* Max width similar to mobile screen for demonstration */
+        margin: 0 auto; /* Center on larger screens */
+        padding: 10px;
+      }
+
+      /* Header (Optional, but good practice) */
+      .header {
+        background-color: #fff;
+        padding: 15px 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #1a73e8; /* Google blue */
+      }
+
+      /* News Card Styling */
+      .news-card {
+        background-color: #fff;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        overflow: hidden; /* Ensures image corners are rounded */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        display: flex;
+        flex-direction: column; /* Stack image and content */
+      }
+
+      .news-card-image {
+        width: 100%;
+        height: 200px; /* Fixed height for consistency */
+        object-fit: cover; /* Covers the area, crops if necessary */
+        display: block; /* Remove extra space below image */
+      }
+
+      .news-card-content {
+        padding: 15px;
+      }
+
+      .news-card-headline {
+        font-size: 1.2em; /* Larger headline */
+        font-weight: 700; /* Bold */
+        margin-top: 0;
+        margin-bottom: 10px;
+        line-height: 1.3;
+        color: #202124;
+      }
+
+      /* Styling for Markdown-rendered content within the card */
+      .news-card-content p {
+        font-size: 0.9em;
+        line-height: 1.5;
+        color: #5f6368;
+        margin-top: 0;
+        margin-bottom: 10px; /* Space between paragraphs */
+      }
+      .news-card-content p:last-child {
+        margin-bottom: 0; /* No bottom margin for the last paragraph */
+      }
+
+      .news-card-content a {
+        color: #1a73e8; /* Blue for links */
+        text-decoration: none;
+      }
+      .news-card-content a:hover {
+        text-decoration: underline;
+      }
+
+      .news-card-content strong {
+        font-weight: 700;
+      }
+
+      .news-card-content em {
+        font-style: italic;
+      }
+
+      .news-card-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8em;
+        color: #70757a;
+        margin-top: 10px; /* Space between content and meta */
+      }
+
+      .news-card-category {
+        background-color: #e8f0fe; /* Light blue background for category */
+        color: #1a73e8;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+      }
+
+      /* Message when no data is loaded */
+      .loading,
+      .error {
+        text-align: center;
+        padding: 20px;
+        font-size: 1.1em;
+        color: #777;
+      }
+
+      .error {
+        color: #d93025; /* Red for error messages */
+      }
+
+      /* Media Queries for Responsiveness (adjusts slightly for larger screens) */
+      @media (min-width: 601px) {
+        .container {
+          padding: 20px;
+        }
+        .news-card {
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>My Mobile News Feed</h1>
+    </div>
+
+    <div class="container" id="news-feed-container">
+      <div class="loading">Loading news articles...</div>
+    </div>
+
+    <script>
+      const SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzS_nq9Cgnq8ycz2mTP0BDbrkvz7tPoskwS8jV2h74xrGU4gEZXtlINy65qteMgkvwaYQ/exec"; // <<< PASTE YOUR URL HERE
+
+      // Configure Marked.js (optional but good practice for security/options)
+      marked.setOptions({
+        gfm: true, // Enable GitHub Flavored Markdown
+        breaks: true, // Use GFM line breaks (single newline creates <br>)
+        sanitize: true, // Sanitize the output HTML to prevent XSS attacks
+      });
+
+      async function fetchNews() {
+        const container = document.getElementById("news-feed-container");
+        container.innerHTML =
+          '<div class="loading">Loading news articles...</div>'; // Show loading message
+
+        try {
+          const response = await fetch(SCRIPT_URL);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const newsData = await response.json();
+
+          container.innerHTML = ""; // Clear loading message
+
+          if (newsData.length === 0) {
+            container.innerHTML =
+              '<div class="error">No news articles found.</div>';
+            return;
+          }
+
+          newsData.forEach((article) => {
+            const card = document.createElement("div");
+            card.classList.add("news-card");
+
+            // Default image if ImageURL is empty or invalid
+            const imageUrl =
+              article.ImageURL && article.ImageURL.startsWith("http")
+                ? article.ImageURL
+                : "https://via.placeholder.com/300x200?text=No+Image";
+
+            // --- APPLY MARKDOWN PARSING HERE ---
+            const headlineHtml = marked.parse(article.Headline || "").trim(); // Parse Headline Markdown
+            const summaryHtml = marked.parse(article.Summary || "").trim(); // Parse Summary Markdown
+
+            card.innerHTML = `
+                        <img src="${imageUrl}" alt="${
+              article.Headline
+            }" class="news-card-image">
+                        <div class="news-card-content">
+                            <h2 class="news-card-headline">${headlineHtml}</h2>
+                            <div class="news-card-summary">${summaryHtml}</div>
+                            <div class="news-card-meta">
+                                <span>${new Date(
+                                  article.Date
+                                ).toLocaleDateString()}</span>
+                                <span class="news-card-category">${
+                                  article.Category
+                                }</span>
+                            </div>
+                        </div>
+                    `;
+            container.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error fetching news:", error);
+          container.innerHTML =
+            '<div class="error">Failed to load news. Please try again later.</div>';
+        }
+      }
+
+      // Fetch news when the page loads
+      document.addEventListener("DOMContentLoaded", fetchNews);
+    </script>
+  </body>
+</html>
