@@ -1,0 +1,15 @@
+config {
+  type: "view",
+}
+
+SELECT
+  date,
+  title,
+  summary,
+  links,
+-- codaSourceRowURLF
+FROM
+  ${ref("s1_apid_mv")}
+
+
+  

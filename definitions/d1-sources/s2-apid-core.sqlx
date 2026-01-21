@@ -1,0 +1,16 @@
+
+
+
+config {
+  type: "table",
+  tags: ["daily", "hourly"],
+}
+
+SELECT * FROM ${ref("D1_E1_RSS_Alphaideas")}
+
+
+
+
+
+
+
