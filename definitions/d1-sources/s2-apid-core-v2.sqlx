@@ -12,5 +12,8 @@ SELECT * FROM ${ref("D1_E1_RSS_Alphaideas")}
 
 
 
+scratch/
+archive/
+backup/
 
 
