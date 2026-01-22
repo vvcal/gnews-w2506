@@ -1,3 +1,4 @@
+/*
 
 config {
   type: "view", // Creates a view in BigQuery. Try changing to "table" instead.
@@ -17,3 +18,5 @@ FROM
   `eqty2407`.`c1d1_cn_mv`.`s1_apid_mv`
 WHERE 
   LOWER(title) LIKE '%linkfest%'
+
+*/  

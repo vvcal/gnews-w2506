@@ -1,4 +1,4 @@
-
+/*
 config {
   type: "view", // Creates a view in BigQuery. Try changing to "table" instead.
 
@@ -18,3 +18,4 @@ FROM
 WHERE 
   LOWER(title) NOT LIKE '%linkfest%' AND LOWER(summary) NOT LIKE '%earning%'
 
+*/
