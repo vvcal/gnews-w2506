@@ -3,4 +3,4 @@ config {
   materialized: true,
 }
 
-SELECT * FROM ${ref("s1_apid_nt")}
+SELECT * FROM ${ref("s2-apid-core-v2")}
