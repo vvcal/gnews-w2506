@@ -6,7 +6,7 @@ config {
   tags: ["daily", "hourly"],
 }
 
-SELECT * FROM ${ref("s1-declaration")}
+SELECT * FROM ${ref("D1_E1_RSS_Alphaideas")}
 
 
 
