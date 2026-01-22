@@ -1,0 +1,10 @@
+config {
+  type: "view",
+  schema: "c1d1_cn_nt",
+  name: "s2-apid-vt2",
+  description: "A table that selects data from D1_S4_Selc_Instapaper."
+}
+
+
+
+SELECT * FROM `eqty2407.ccmn_read.D1_E1_RSS_Alphaideas`

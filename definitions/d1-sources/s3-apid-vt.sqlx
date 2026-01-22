@@ -1,0 +1,11 @@
+config {
+  type: "view",
+  schema: "c1d1_cn_nt",
+  name: "s2-apid-vt",
+  description: "A table that selects data from D1_S4_Selc_Instapaper."
+}
+
+
+
+SELECT * FROM ${ref("s1-dclr2-nt")}
+

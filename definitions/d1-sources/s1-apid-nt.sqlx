@@ -1,0 +1,9 @@
+config {
+  type: "table",
+  schema: "c1d1_cn_nt",
+  name: "s1-apid-nt",
+  description: "A table that selects data from D1_S4_Selc_Instapaper."
+}
+
+SELECT * FROM ${ref("D1_E1_RSS_Alphaideas")}
+
