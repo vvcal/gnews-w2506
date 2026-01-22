@@ -1,0 +1,41 @@
+config {
+  type: "view",
+  schema: "c1d1_o1flt",
+  name: "s1_apid_flt_f99exflt_vt",
+  description: "Filtered APID view excluding linkfest and earnings mentions"
+}
+
+SELECT
+  date,
+  title,
+  summary,
+  links
+  -- codaSourceRowURLF (commented out)
+FROM
+  ${ref("s1_apid_mv")}
+WHERE
+  LOWER(title) NOT LIKE '%linkfest%'
+  AND LOWER(summary) NOT LIKE '%earning%'
+
+  
+/*
+config {
+  type: "view", // Creates a view in BigQuery. Try changing to "table" instead.
+
+}
+
+
+CREATE OR REPLACE VIEW `eqty2407.c1d1_o1flt.s1_apid_flt_f99exflt_vt`
+AS
+SELECT
+  date,
+  title,
+  summary,
+  links,
+--codaSourceRowURLF
+FROM
+  `eqty2407`.`c1d1_cn_mv`.`s1_apid_mv`
+WHERE 
+  LOWER(title) NOT LIKE '%linkfest%' AND LOWER(summary) NOT LIKE '%earning%'
+
+*/  

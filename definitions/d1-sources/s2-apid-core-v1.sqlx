@@ -1,0 +1,18 @@
+s1_apid_nt
+
+config {
+  type: "view", // Creates a view in BigQuery. Try changing to "table" instead.
+  tags: ["daily", "hourly"],
+  columns: {
+    test: "A description for the test column", // Column descriptions are pushed to BigQuery.
+  }
+
+}
+
+
+CREATE OR REPLACE TABLE `eqty2407.c1d1_cn_nt.s1_apid_nt`
+AS
+SELECT * FROM `eqty2407.ccmn_read.D1_E1_RSS_Alphaideas`
+
+
+

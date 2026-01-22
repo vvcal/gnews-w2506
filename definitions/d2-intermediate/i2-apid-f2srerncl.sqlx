@@ -1,0 +1,20 @@
+
+config {
+  type: "view", // Creates a view in BigQuery. Try changing to "table" instead.
+
+}
+
+
+CREATE OR REPLACE VIEW `eqty2407.c1d1_o1flt.s1_apid_flt_f2srercl_vt`
+AS
+SELECT
+  date,
+  title,
+  summary,
+  links,
+--codaSourceRowURLF
+FROM
+  `eqty2407`.`c1d1_cn_mv`.`s1_apid_mv`
+WHERE
+    LOWER(summary) LIKE '%earning%'
+
