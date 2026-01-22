@@ -12,7 +12,7 @@ SELECT
   links
   -- codaSourceRowURLF (commented out)
 FROM
-  ${ref("s1_apid_mv")}
+  ${ref("s3-apid-mv")}
 WHERE
   LOWER(title) NOT LIKE '%linkfest%'
   AND LOWER(summary) NOT LIKE '%earning%'
