@@ -1,4 +1,4 @@
-// test to check how default dataset of dataform stores table 
+-- test to check how default dataset of dataform stores table 
 
 
 config {

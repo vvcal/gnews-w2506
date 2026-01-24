@@ -1,9 +1,10 @@
-/*
+
 
 config {
   type: "view",
   schema: "c1d1_o1flt",
   name: "s1_apid_flt_f99exflt_vt",
+  disabled: true,
   description: "Filtered APID view excluding linkfest and earnings mentions"
 }
 
@@ -21,4 +22,3 @@ WHERE
 
   
 
-*/
