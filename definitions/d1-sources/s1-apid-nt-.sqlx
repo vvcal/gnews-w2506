@@ -6,9 +6,7 @@ config {
   tags: ["daily", "hourly"],
 }
 
-SELECT * FROM ${ref("D1_E1_RSS_Alphaideas")}
 
-
-
-
- 
+CREATE OR REPLACE TABLE `eqty2407.c1d1_cn_nt.s1-apid-nt`
+AS
+SELECT * FROM `eqty2407.ccmn_read.D1_E1_RSS_Alphaideas`
