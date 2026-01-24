@@ -1,3 +1,5 @@
+// test to check how default view table of dataform stores table 
+
 config {
   type: "view",
   schema: "c1d1_cn_nt",
@@ -8,3 +10,7 @@ config {
 
 
 SELECT * FROM `eqty2407.ccmn_read.D1_E1_RSS_Alphaideas`
+
+
+
+

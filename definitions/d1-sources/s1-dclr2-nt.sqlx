@@ -1,4 +1,4 @@
-
+/*
 config {
   type: "declaration",
   database: "eqty2407",
@@ -6,3 +6,4 @@ config {
   name: "s1-apid-nt",
   description: "A table that selects data from D1_S4_Selc_Instapaper."
 }
+*/

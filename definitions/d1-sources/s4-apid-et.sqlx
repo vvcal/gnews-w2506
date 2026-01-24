@@ -1,3 +1,5 @@
+// experiment to check execution is possible when create or replace table in 
+
 config {
   type: "view", // Creates a view in BigQuery. Try changing to "table" instead.
   tags: ["daily", "hourly"],

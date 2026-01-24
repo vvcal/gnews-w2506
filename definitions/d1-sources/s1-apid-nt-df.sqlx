@@ -1,4 +1,4 @@
-
+// test to check how default dataset of dataform stores table 
 
 
 config {
@@ -11,3 +11,4 @@ SELECT * FROM ${ref("D1_E1_RSS_Alphaideas")}
 
 
 
+ 
