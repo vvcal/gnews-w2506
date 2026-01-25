@@ -1,0 +1,11 @@
+config {
+  type: "view",
+  schema: "c1d1_cn_nt",
+  name: "s3-apid-vt"
+  
+}
+
+
+
+SELECT * FROM ${ref("s1-apid-nt")}
+

@@ -2,6 +2,6 @@ config {
   type: "declaration",
   database: "eqty2407",
   schema: "ccmn_read",
-  name: "D1_E1_RSS_Alphaideas",
+  name: "D1_E1_RSS_Alphaideas"
 }
 

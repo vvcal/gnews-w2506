@@ -1,0 +1,8 @@
+config {
+  type: "declaration",
+  database: "eqty2407",
+  schema: "c1d1_cn_nt",
+  name: "s1-apid-nt"
+}
+
+
